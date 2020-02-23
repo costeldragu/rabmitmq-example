@@ -8,6 +8,9 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import static com.mdc.rabbmitmqexample.RabbitMqExampleApplication.EXCHANGE_NAME;
+import static com.mdc.rabbmitmqexample.RabbitMqExampleApplication.ROUTING_KEY;
+
 @Service
 public class PracticalTipSender {
 
@@ -22,7 +25,7 @@ public class PracticalTipSender {
     @Scheduled(fixedDelay = 3000L)
     public void sendPracticalTip() {
         PracticalTipMessage tipMessage = new PracticalTipMessage("Always use Immutable clasees in Java", 1, false);
-        rabbitTemplate.convertAndSend(RabbitMqExampleApplication.EXCHANGE_NAME, RabbitMqExampleApplication.ROUTING_KEY, tipMessage);
+        rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, tipMessage);
         log.info("Practical tip sent {}", tipMessage);
     }
 }

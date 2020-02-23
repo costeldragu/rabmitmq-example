@@ -17,7 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class RabbitMqExampleApplication {
 
 	public static final String EXCHANGE_NAME = "tips_tx";
-	public static final String DEFAULT_PARSOMG_QUEUE = "default_parser_q";
+	public static final String DEFAULT_PARSING_QUEUE = "default_parser_q";
 	public static final String ROUTING_KEY = "tips";
 
 	public static void main(String[] args) {
@@ -31,7 +31,7 @@ public class RabbitMqExampleApplication {
 
 	@Bean
 	public Queue defaultParsingQueue() {
-		return new Queue(DEFAULT_PARSOMG_QUEUE);
+		return new Queue(DEFAULT_PARSING_QUEUE);
 	}
 
 	@Bean
