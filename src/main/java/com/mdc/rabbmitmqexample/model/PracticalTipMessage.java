@@ -2,9 +2,7 @@ package com.mdc.rabbmitmqexample.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.io.Serializable;
-
-public class PracticalTipMessage implements Serializable {
+public class PracticalTipMessage {
     private final String text;
     private final int priority;
     private final boolean secret;

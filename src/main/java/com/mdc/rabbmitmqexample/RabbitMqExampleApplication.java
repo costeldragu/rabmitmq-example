@@ -17,7 +17,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class RabbitMqExampleApplication {
 
 	public static final String EXCHANGE_NAME = "tips_tx";
-	public static final String DEFAULT_PARSING_QUEUE = "default_parser_q";
+	public static final String DEFAULT_PARSING_QUEUE_1 = "default_parser_q_1";
+	public static final String DEFAULT_PARSING_QUEUE_2 = "default_parser_q_2";
+	public static final String DEFAULT_PARSING_QUEUE_3 = "default_parser_q_3";
 	public static final String ROUTING_KEY = "tips";
 
 	public static void main(String[] args) {
@@ -30,13 +32,33 @@ public class RabbitMqExampleApplication {
 	}
 
 	@Bean
-	public Queue defaultParsingQueue() {
-		return new Queue(DEFAULT_PARSING_QUEUE);
+	public Queue defaultParsingQueue1() {
+		return new Queue(DEFAULT_PARSING_QUEUE_1);
 	}
 
 	@Bean
-	public Binding queueToExhangeBinding() {
-		return BindingBuilder.bind(defaultParsingQueue()).to(tipsExchange()).with(ROUTING_KEY);
+	public Queue defaultParsingQueue2() {
+		return new Queue(DEFAULT_PARSING_QUEUE_2);
+	}
+
+	@Bean
+	public Queue defaultParsingQueue3() {
+		return new Queue(DEFAULT_PARSING_QUEUE_3);
+	}
+
+	@Bean
+	public Binding queueToExchangeBinding1() {
+		return BindingBuilder.bind(defaultParsingQueue1()).to(tipsExchange()).with(ROUTING_KEY);
+	}
+
+	@Bean
+	public Binding queueToExchangeBinding2() {
+		return BindingBuilder.bind(defaultParsingQueue2()).to(tipsExchange()).with(ROUTING_KEY);
+	}
+
+	@Bean
+	public Binding queueToExchangeBinding3() {
+		return BindingBuilder.bind(defaultParsingQueue3()).to(tipsExchange()).with(ROUTING_KEY);
 	}
 
 	@Bean
